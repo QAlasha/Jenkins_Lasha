@@ -1,7 +1,7 @@
 import allure
 
 from locators.reg_locate import RegisterLocator
-from selene import browser, by, have
+from selene import by, have
 
 
 @allure.title("Successful fill form")
