@@ -6,8 +6,6 @@ from selenium.webdriver.chrome.options import Options
 from selene import Browser, Config
 from dotenv import load_dotenv
 
-from utils import attach
-
 DEFAULT_BROWSER_VERSION = "100.0"
 
 
@@ -23,7 +21,7 @@ def load_env():
     load_dotenv()
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='session', autouse=True)
 def setup_browser(request):
     browser_version = request.config.getoption('--browser_version')
     browser_version = browser_version if browser_version != "" else DEFAULT_BROWSER_VERSION
@@ -49,8 +47,8 @@ def setup_browser(request):
 
     yield browser
 
-    attach.add_html(browser)
-    attach.add_screenshot(browser)
-    attach.add_logs(browser)
-    attach.add_video(browser)
+    # attach.add_html(browser)
+    # attach.add_screenshot(browser)
+    # attach.add_logs(browser)
+    # attach.add_video(browser)
     browser.quit()
